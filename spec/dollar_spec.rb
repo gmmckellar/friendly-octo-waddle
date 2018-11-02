@@ -1,0 +1,3 @@
+describe Dollar do
+
+end
