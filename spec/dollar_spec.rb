@@ -16,4 +16,24 @@ describe Dollar do
       expect { subject }.to_not change five, :amount
     end
   end
+
+  describe "#==" do
+    subject { described_class.new(amount) == five  }
+
+    context "with an equal amount" do
+      let(:amount) { 5 }
+
+      it "is true" do
+        expect(subject).to be true
+      end
+    end
+
+    context "with a different amount" do
+      let(:amount) { 1 }
+
+      it "is false" do
+        expect(subject).to be false
+      end
+    end
+  end
 end
