@@ -1,17 +1,15 @@
 require "franc"
 
 describe Franc do
-  let(:five) { described_class.new 5 }
+  let(:deuce) { described_class.new 2 }
 
   describe "#times" do
     let(:multiplier) { 2 }
-    subject { five.times multiplier }
+    subject { deuce.times multiplier }
 
     it "multiplies" do
-      expect(subject).to eq Franc.new 10
-      expect(five.times(multiplier)).to eq Franc.new 10
+      expect(subject).to eq Franc.new 4
+      expect(deuce.times(multiplier * 2)).to eq Franc.new 8
     end
-
-    it { is_expected.to_not eq five }
   end
 end
