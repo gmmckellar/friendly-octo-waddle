@@ -16,6 +16,7 @@ class Money
   private
 
   def equals?(object)
+    object.is_a?(self.class) &&
     amount == object.amount
   end
 end

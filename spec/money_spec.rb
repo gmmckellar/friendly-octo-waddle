@@ -1,23 +1,11 @@
 describe Money do
-  let(:five) { described_class.new 5 }
-
-  describe "#==" do
-    subject { described_class.new(value) == five }
-
-    context "with an equal value" do
-      let(:value) { 5 }
-
-      it "is true" do
-        expect(subject).to be true
-      end
-    end
-
-    context "with a different value" do
-      let(:value) { 1 }
-
-      it "is false" do
-        expect(subject).to be false
-      end
+  describe "equality" do
+    it "compares money objects" do
+      expect(Dollar.new 5).to eq Dollar.new 5
+      expect(Dollar.new 5).to_not eq Dollar.new 6
+      expect(Franc.new 5).to eq Franc.new 5
+      expect(Franc.new 5).to_not eq Franc.new 6
+      expect(Franc.new 5).to_not eq Dollar.new 5
     end
   end
 end
