@@ -3,6 +3,16 @@ class Money
     @amount = value
   end
 
+  def self.dollar(value)
+    Dollar.new value
+  end
+
+  def self.franc(value)
+    Franc.new(value)
+  end
+
+  def times(_); end
+
   def ==(object)
     equals?(object)
   end
