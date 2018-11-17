@@ -1,13 +1,12 @@
 require "money"
 
 describe Money do
-
   describe "multiplication" do
     subject { Money.dollar 5 }
 
     it "multiplies" do
-      expect(subject.times 2).to eq Money.dollar 10
-      expect(subject.times 4).to eq Money.dollar 20
+      expect(subject.times(2)).to eq Money.dollar 10
+      expect(subject.times(4)).to eq Money.dollar 20
     end
   end
 
@@ -27,5 +26,4 @@ describe Money do
       expect(Money.franc(1).currency).to eq "CHF"
     end
   end
-  
 end

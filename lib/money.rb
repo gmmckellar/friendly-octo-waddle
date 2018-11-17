@@ -1,4 +1,6 @@
 class Money
+  attr_reader :currency
+
   def self.dollar(amount)
     new amount, "USD"
   end
@@ -12,28 +14,22 @@ class Money
     @currency = currency
   end
 
-  def currency
-    @currency
-  end
-
   def times(multiplier)
     Money.new amount * multiplier, currency
   end
 
-  def ==(object)
-    equals?(object)
+  def ==(other)
+    equals?(other)
   end
 
   protected
 
-  def amount
-    @amount
-  end
+  attr_reader :amount
 
   private
 
-  def equals?(object)
-    currency == object.currency &&
-    amount == object.amount
+  def equals?(other)
+    currency == other.currency &&
+      amount == other.amount
   end
 end

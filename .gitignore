@@ -1,2 +1,3 @@
 # rvm local ruby version file
 .ruby-version
+.rubocop.yml
