@@ -1,3 +1,0 @@
-class Dollar < Money
-
-end

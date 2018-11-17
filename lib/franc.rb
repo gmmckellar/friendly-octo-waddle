@@ -1,3 +1,0 @@
-class Franc < Money
-
-end
