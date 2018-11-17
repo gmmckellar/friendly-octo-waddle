@@ -16,7 +16,9 @@ class Money
     @currency
   end
 
-  def times(_); end
+  def times(multiplier)
+    Money.new amount * multiplier, currency
+  end
 
   def ==(object)
     equals?(object)
@@ -31,7 +33,7 @@ class Money
   private
 
   def equals?(object)
-    object.is_a?(self.class) &&
+    currency == object.currency &&
     amount == object.amount
   end
 end

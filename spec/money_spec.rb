@@ -31,6 +31,7 @@ describe Money do
       expect(Money.franc 5).to eq Money.franc 5
       expect(Money.franc 5).to_not eq Money.franc 6
       expect(Money.franc 5).to_not eq Money.dollar 5
+      expect(Money.new(5, "CHF")).to eq Franc.new(5, "CHF")
     end
   end
 
