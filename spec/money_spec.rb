@@ -1,3 +1,7 @@
+require "money"
+require "dollar"
+require "franc"
+
 describe Money do
 
   describe "multiplication" do
@@ -27,6 +31,13 @@ describe Money do
       expect(Money.franc 5).to eq Money.franc 5
       expect(Money.franc 5).to_not eq Money.franc 6
       expect(Money.franc 5).to_not eq Money.dollar 5
+    end
+  end
+
+  describe "currency" do
+    it "responds with abbreviation" do
+      expect(Money.dollar(1).currency).to eq "USD"
+      expect(Money.franc(1).currency).to eq "CHF"
     end
   end
 end

@@ -1,14 +1,19 @@
 class Money
-  def initialize(value)
-    @amount = value
+  def self.dollar(amount)
+    Dollar.new amount, "USD"
   end
 
-  def self.dollar(value)
-    Dollar.new value
+  def self.franc(amount)
+    Franc.new amount, "CHF"
   end
 
-  def self.franc(value)
-    Franc.new(value)
+  def initialize(amount, currency)
+    @amount = amount
+    @currency = currency
+  end
+
+  def currency
+    @currency
   end
 
   def times(_); end
