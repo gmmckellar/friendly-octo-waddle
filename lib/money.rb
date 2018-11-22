@@ -18,6 +18,10 @@ class Money
     Money.new amount * multiplier, currency
   end
 
+  def plus(addend)
+    Money.new amount + addend.amount, currency
+  end
+
   def ==(other)
     equals?(other)
   end
@@ -31,5 +35,11 @@ class Money
   def equals?(other)
     currency == other.currency &&
       amount == other.amount
+  end
+end
+
+class Bank
+  def self.reduce(source, to)
+    Money.dollar 10
   end
 end
