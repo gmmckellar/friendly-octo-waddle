@@ -39,7 +39,7 @@ class Money
 end
 
 class Bank
-  def self.reduce(source, to)
+  def self.reduce(_source, _to)
     Money.dollar 10
   end
 end
