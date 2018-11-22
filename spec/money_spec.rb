@@ -32,7 +32,7 @@ describe Money do
     subject { five.plus(five) }
 
     it "adds" do
-      reduced = Bank.reduce subject, "USD"
+      reduced = Bank.new.reduce subject, "USD"
       expect(reduced).to eq Money.dollar 10
     end
 
@@ -45,12 +45,19 @@ describe Money do
   describe "Bank" do
     it "reduces a sum" do
       sum = Sum.new(Money.dollar(1), Money.dollar(2))
-      expect(Bank.reduce(sum, "USD")).to eq Money.dollar 3
+      expect(Bank.new.reduce(sum, "USD")).to eq Money.dollar 3
     end
 
     it "reduces money" do
-      reduction = Bank.reduce Money.dollar(1), "USD"
+      reduction = Bank.new.reduce Money.dollar(1), "USD"
       expect(reduction).to eq Money.dollar(1)
+    end
+
+    it "reduces money to different currency" do
+      bank = Bank.new
+      bank.add_rate("CHF", "USD", 2)
+      reduction = bank.reduce(Money.franc(2), "USD")
+      expect(reduction).to eq Money.dollar 1
     end
   end
 end

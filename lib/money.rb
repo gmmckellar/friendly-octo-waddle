@@ -26,8 +26,9 @@ class Money
     equals?(other)
   end
 
-  def reduce(_to)
-    self
+  def reduce(bank, to)
+    rate = bank.rate(currency, to)
+    Money.new amount / rate, to
   end
 
   private
@@ -39,8 +40,20 @@ class Money
 end
 
 class Bank
-  def self.reduce(source, to)
-    source.reduce to
+  def initialize
+    @rates = {}
+  end
+
+  def reduce(source, to)
+    source.reduce self, to
+  end
+
+  def rate(from, to)
+    @rates.fetch [from, to], 1
+  end
+
+  def add_rate(from, to, rate)
+    @rates[[from, to]] = rate
   end
 end
 
@@ -52,7 +65,7 @@ class Sum
     @addend = addend
   end
 
-  def reduce(currency)
+  def reduce(_bank, currency)
     amount = augend.amount + addend.amount
     Money.new amount, currency
   end
