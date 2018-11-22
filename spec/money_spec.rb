@@ -28,12 +28,29 @@ describe Money do
   end
 
   describe "addition" do
-    subject { Money.dollar(5).plus(Money.dollar(5)) }
+    let(:five) { Money.dollar 5 }
+    subject { five.plus(five) }
 
     it "adds" do
-      expect(subject).to eq Money.dollar 10
+      reduced = Bank.reduce subject, "USD"
+      expect(reduced).to eq Money.dollar 10
+    end
 
-      expect(Bank.reduce(subject, "USD")).to eq Money.dollar 10
+    it "returns a sum" do
+      expect(subject.addend).to eq five
+      expect(subject.augend).to eq five
+    end
+  end
+
+  describe "Bank" do
+    it "reduces a sum" do
+      sum = Sum.new(Money.dollar(1), Money.dollar(2))
+      expect(Bank.reduce(sum, "USD")).to eq Money.dollar 3
+    end
+
+    it "reduces money" do
+      reduction = Bank.reduce Money.dollar(1), "USD"
+      expect(reduction).to eq Money.dollar(1)
     end
   end
 end
