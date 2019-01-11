@@ -65,8 +65,9 @@ class Sum
     @addend = addend
   end
 
-  def reduce(_bank, currency)
-    amount = augend.amount + addend.amount
+  def reduce(bank, currency)
+    amount = augend.reduce(bank, currency).amount +
+             addend.reduce(bank, currency).amount
     Money.new amount, currency
   end
 end
