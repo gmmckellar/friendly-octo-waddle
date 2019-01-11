@@ -97,6 +97,4 @@ describe Sum do
     reduction = bank.reduce(sum, "USD")
     expect(reduction).to eq Money.dollar 20
   end
-
-
 end

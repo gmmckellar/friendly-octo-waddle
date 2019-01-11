@@ -72,10 +72,10 @@ class Sum
   end
 
   def plus(addend)
-    return Sum.new(self, addend)
+    Sum.new(self, addend)
   end
 
   def times(multiplier)
-    return Sum.new(augend.times(multiplier), addend.times(multiplier))
+    Sum.new(augend.times(multiplier), addend.times(multiplier))
   end
 end
