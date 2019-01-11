@@ -73,3 +73,30 @@ describe Bank do
     expect(reduction).to eq Money.dollar 1
   end
 end
+
+describe Sum do
+  let(:five_bucks) { Money.dollar 5 }
+  let(:ten_francs) { Money.franc 10 }
+
+  describe "plus" do
+    it "adds money" do
+      bank = Bank.new
+      bank.add_rate("CHF", "USD", 2)
+
+      sum = Sum.new(five_bucks, ten_francs).plus five_bucks
+      reduction = bank.reduce(sum, "USD")
+      expect(reduction).to eq Money.dollar 15
+    end
+  end
+
+  it "multiplies" do
+    bank = Bank.new
+    bank.add_rate("CHF", "USD", 2)
+
+    sum = Sum.new(five_bucks, ten_francs).times 2
+    reduction = bank.reduce(sum, "USD")
+    expect(reduction).to eq Money.dollar 20
+  end
+
+
+end

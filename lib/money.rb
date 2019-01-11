@@ -70,4 +70,12 @@ class Sum
              addend.reduce(bank, currency).amount
     Money.new amount, currency
   end
+
+  def plus(addend)
+    return Sum.new(self, addend)
+  end
+
+  def times(multiplier)
+    return Sum.new(augend.times(multiplier), addend.times(multiplier))
+  end
 end
